@@ -11,6 +11,7 @@ end
 # Copy function to move files
 def copy(source, destination)
   print "dryrun = #{$dryrun} " if $debug >= 1
+  # If in dryrun mode it will print files to copy and where they will be coppied to
   if $dryrun
     if source.class == [].class
       puts "Copy #{source.join(", ")} to #{FileUtils.pwd}"
@@ -26,11 +27,13 @@ p ARGV if ARGV[0].include?("d")
 $debug = 0
 $run = false
 $dryrun = false
+# Loop through arguments
 while ARGV.length > 0
   current = ARGV.shift
   if current.include?"-"
     current = current.split("")
     current.shift
+    # Loop through flags
     while current.length > 0
       flag = current.shift
       print "flag:#{flag} " if $debug >= 1
