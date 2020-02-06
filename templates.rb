@@ -1,7 +1,15 @@
+#!/usr/bin/env ruby
+
 require("fileutils")
 
-Helpmessage = "This is the help message"
-Templateloc = "$HOME/.cache/templates/"
+Helpmessage = "Usage: templates [OPTION] TEMPLATE
+
+Arguments:
+  -h    display this help
+  -d    increase debug level
+  -r    run default setup for filetype
+  -D    dry run following commands"
+Templateloc = "#{Dir.home}/.cache/templates/"
 
 # Allows case to use include
 def ===(value)
@@ -19,7 +27,7 @@ def copy(source, destination)
       puts "Copy #{source} to #{FileUtils.pwd}"
     end
   else
-    # FileUtils.cp
+    FileUtils.cp(source, FileUtils.pwd)
   end
 end
 
